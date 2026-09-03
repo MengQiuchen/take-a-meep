@@ -336,7 +336,10 @@ async def render():
                         if not called and t >= CALL_AT:
                             await page.evaluate("puppet.playCall()")
                             called = True
-                            MEEP_AUDIO_AT = clock + CALL_AT
+                            # The call animation opens the bill 0.10 s after playCall();
+                            # the wav's first note starts 0.035 s in — offset the audio
+                            # so sound and gape land on the same frame.
+                            MEEP_AUDIO_AT = clock + 0.065
                         if t > seconds - 0.35:
                             chip = ("05:00", "BREAK", BREAK_C, W / 2)
                     elif name == "breakwalk":
@@ -358,7 +361,8 @@ async def render():
                     if caption:
                         draw_caption(im, caption, t)
                     if name == "alarm" and called:
-                        meep_pop(im, t, [CALL_AT + 0.035, CALL_AT + 0.742])
+                        # match the bill-open onsets of the call animation
+                        meep_pop(im, t, [CALL_AT + 0.10, CALL_AT + 0.78])
                     if name == "pet":
                         cx = W / 2 + math.sin(t * math.tau * 1.05) * BIRD * 0.21 + BIRD * 0.07
                         cy = GROUND - BIRD * 0.5 + math.sin(t * math.tau * 2.1) * 5

@@ -24,11 +24,16 @@
 
 ## 下载
 
-**[⬇️ 下载 Take a Meep（macOS · Apple Silicon）](https://github.com/MengQiuchen/take-a-meep/releases/latest)** —— 下载 `.dmg`，把鸟拖进「应用程序」就装好了。
+**[⬇️ 下载最新版](https://github.com/MengQiuchen/take-a-meep/releases/latest)** —— macOS（Apple Silicon）。
 
-> **首次打开**：应用只有本机 ad-hoc 签名（暂无 Apple 公证），macOS 会拦一下。
-> 去 **系统设置 → 隐私与安全性**，拉到底点 **仍要打开**；或在终端跑一次
-> `xattr -cr "/Applications/Take a Meep.app"`。之后就能正常打开了。
+DMG 安装步骤：
+
+1. 下载 **`Take-a-Meep-<版本>-arm64.dmg`** 并双击打开
+2. 在弹出的窗口里，把 **Take a Meep** 拖到旁边的 **Applications** 快捷方式上，然后推出磁盘映像
+3. 从「应用程序」（或聚焦搜索）启动 **Take a Meep** —— 丘鹬会落在屏幕右下角，菜单栏的小鸟图标里是全部设置
+4. **仅首次打开**：应用是本机 ad-hoc 签名（暂无 Apple 公证），macOS 会拦一下。去 **系统设置 → 隐私与安全性**，拉到底点 **仍要打开**；或在终端执行一次 `xattr -cr "/Applications/Take a Meep.app"`
+
+每个 Release 也附带 `.zip` 裸应用包。升级时直接用新版覆盖安装即可，设置会保留。
 
 ## 见见这只鸟
 

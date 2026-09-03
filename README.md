@@ -24,11 +24,16 @@
 
 ## Download
 
-**[⬇️ Get Take a Meep for macOS (Apple Silicon)](https://github.com/MengQiuchen/take-a-meep/releases/latest)** — grab the `.dmg`, drag the bird into Applications, done.
+**[⬇️ Download the latest release](https://github.com/MengQiuchen/take-a-meep/releases/latest)** — macOS on Apple Silicon.
 
-> **First launch**: the app is ad-hoc signed (no Apple notarization yet), so macOS will warn you.
-> Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** — or run
-> `xattr -cr "/Applications/Take a Meep.app"` once in Terminal. After that it opens normally.
+Installing from the `.dmg`:
+
+1. Download **`Take-a-Meep-<version>-arm64.dmg`** and open it
+2. In the window that appears, drag **Take a Meep** onto the **Applications** shortcut, then eject the disk image
+3. Launch **Take a Meep** from Applications (or Spotlight) — the woodcock lands in the bottom-right corner of your screen, and the bird icon in the menu bar holds every setting
+4. **First launch only**: macOS warns you because the app is ad-hoc signed (no Apple notarization yet). Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** — or run `xattr -cr "/Applications/Take a Meep.app"` once in Terminal
+
+Each release also ships a `.zip` with the bare app if you prefer that. To update, install the new version over the old one — your settings are kept.
 
 ## Meet the bird
 
