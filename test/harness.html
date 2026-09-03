@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body { margin: 0; background: #8a8f96; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <canvas id="c" width="440" height="330"></canvas>
+    <script>
+      // Virtual clock so behaviours are deterministic in the headless harness.
+      window.__vt = 0;
+      performance.now = () => window.__vt;
+    </script>
+    <script type="module">
+      import { WoodcockPuppet } from '../src/renderer/puppet.js';
+      import manifest from '../assets/character/puppet-v4/manifest.js';
+      const canvas = document.querySelector('#c');
+      const params = new URLSearchParams(location.search);
+      canvas.width = Number(params.get('w') || 440);
+      canvas.height = Number(params.get('h') || 330);
+      const ctx = canvas.getContext('2d');
+      const puppet = new WoodcockPuppet({ assetRoot: '../assets/character/puppet-v4', manifest });
+      window.puppet = puppet;
+      let virtualTime = 0;
+      window.step = (ms) => {
+        virtualTime += ms;
+        window.__vt = virtualTime;
+        puppet.update(virtualTime);
+      };
+      window.renderFrame = (opts = {}) => {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#8a8f96';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = 'rgba(255,255,0,0.5)';
+        const ground = opts.groundY ?? (canvas.height - 30);
+        ctx.beginPath(); ctx.moveTo(0, ground); ctx.lineTo(canvas.width, ground); ctx.stroke();
+        puppet.draw(ctx, { centerX: canvas.width / 2, groundY: ground, width: opts.width ?? Math.round(canvas.width * 0.77) });
+      };
+      window.ready = () => puppet.ready;
+      // Deterministic randomness for reproducible frames.
+      let seed = 7;
+      puppet.random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+      puppet.lastTime = 0;
+      puppet.blinkAt = 1e12;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "meep-bird-desktop",
+  "version": "0.8.1",
+  "private": true,
+  "description": "Take a Meep: a real-footage American woodcock desktop timer companion for macOS.",
+  "main": "src/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron . -ApplePersistenceIgnoreState YES",
+    "dev": "electron . -ApplePersistenceIgnoreState YES",
+    "capture": "MEEP_CAPTURE_PATH=artifacts/meep-bird-preview.png electron . -ApplePersistenceIgnoreState YES",
+    "capture:alarm": "MEEP_CAPTURE_PATH=artifacts/meep-bird-alarm.png MEEP_CAPTURE_ALARM=1 electron . -ApplePersistenceIgnoreState YES",
+    "capture:collapsed": "MEEP_CAPTURE_PATH=artifacts/meep-bird-collapsed.png MEEP_CAPTURE_COLLAPSED=1 electron . -ApplePersistenceIgnoreState YES",
+    "capture:walk": "MEEP_CAPTURE_PATH=artifacts/meep-bird-walk.png MEEP_CAPTURE_WALK=1 electron . -ApplePersistenceIgnoreState YES",
+    "smoke": "MEEP_SMOKE_TEST=1 electron . -ApplePersistenceIgnoreState YES",
+    "puppet": "python3 tools/make_photo_puppet_v4.py assets/character/idle-v2.png assets/character/puppet-v4",
+    "poses": "python3 test/render_poses.py",
+    "icon": "python3 tools/make_app_icon.py assets/character/idle-v2.png assets/icon",
+    "package:mac": "electron-packager . \"Take a Meep\" --platform=darwin --arch=arm64 --out=dist --overwrite --prune=true --asar --app-bundle-id=com.meepbird.desktop --app-version=0.8.1 --ignore=\"^/(VideoFrames|tools|test|artifacts|assets/source|assets/character/(call|call-v2|call-v2-clean|walk|walk-v2|puppet-v2|puppet-v3))\" && cp assets/icon/MeepBird.icns \"dist/Take a Meep-darwin-arm64/Take a Meep.app/Contents/Resources/electron.icns\" && codesign --force --deep --sign - \"dist/Take a Meep-darwin-arm64/Take a Meep.app\""
+  },
+  "dependencies": {
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^44.0.0"
+  }
+}

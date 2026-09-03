@@ -1,0 +1,309 @@
+:root {
+  color-scheme: dark;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --text: #f7f1e8;
+  --muted: rgba(247, 241, 232, 0.58);
+  --warm-bright: #f1bd82;
+  --rest: #86b8aa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  border: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+button:focus-visible,
+canvas:focus-visible {
+  outline: 2px solid rgba(241, 189, 130, 0.9);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bird-stage {
+  position: absolute;
+  z-index: 6;
+  top: 8px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-app-region: no-drag;
+}
+
+#birdCanvas {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  opacity: var(--bird-opacity, 1);
+  transition: opacity 200ms ease;
+  -webkit-app-region: no-drag;
+}
+
+/* Hovering brings a ghosted bird back to full strength while you interact. */
+.bird-stage:hover #birdCanvas {
+  opacity: 1;
+}
+
+body.held #birdCanvas {
+  cursor: grabbing;
+}
+
+.ground-shadow {
+  position: absolute;
+  z-index: 1;
+  right: auto;
+  left: 50%;
+  bottom: 13px;
+  width: 112px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(8, 6, 5, 0.34), rgba(8, 6, 5, 0) 68%);
+  filter: blur(3px);
+  transform: translateX(-50%) rotate(-3deg);
+  transition: opacity 180ms ease;
+}
+
+/* A slim pill floating just above the bird's head: [⏸ ↺ ■] · pulse · time · phase · meep.
+   Hidden by default — it fades in while the pointer hovers the bird, when a
+   single click pins it, and while the bird is mid-meep. */
+.timer-chip {
+  position: absolute;
+  z-index: 7;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 9px 0 5px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(29, 26, 24, 0.85);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+  -webkit-app-region: no-drag;
+}
+
+.bird-stage:hover .timer-chip,
+body.chip-pinned .timer-chip,
+body.alarming .timer-chip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chip-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.chip-button {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 9px;
+  line-height: 1;
+  transition: background 130ms ease, color 130ms ease;
+}
+
+.chip-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+
+.chip-button:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.chip-button:disabled:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* The little woodcock head at the end of the pill: click it for a meep. */
+.chip-meep {
+  color: var(--warm-bright);
+  border-color: rgba(241, 189, 130, 0.28);
+  background: rgba(241, 189, 130, 0.1);
+}
+
+.chip-meep:hover {
+  color: #ffd9a8;
+  background: rgba(241, 189, 130, 0.22);
+}
+
+.chip-meep svg {
+  display: block;
+}
+
+body.paused-chip .chip-pulse,
+body:not(.timing) .chip-pulse {
+  animation: none;
+  background: rgba(247, 241, 232, 0.4);
+}
+
+.chip-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--warm-bright);
+  box-shadow: 0 0 0 0 rgba(241, 189, 130, 0.5);
+  animation: pulse 1.8s infinite;
+}
+
+body.resting .chip-pulse {
+  background: var(--rest);
+}
+
+.timer-chip strong {
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.chip-phase {
+  color: var(--muted);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.alarm-caption {
+  position: absolute;
+  z-index: 9;
+  top: 40px;
+  left: 8px;
+  width: 86px;
+  height: 58px;
+  pointer-events: none;
+}
+
+.alarm-caption span {
+  position: absolute;
+  display: block;
+  color: #fff2d7;
+  font-family: "Arial Rounded MT Bold", "SF Pro Rounded", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  text-shadow: 0 3px 0 rgba(66, 41, 25, 0.55), 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+.alarm-caption span:first-child {
+  top: 6px;
+  left: 18px;
+  font-size: 13px;
+  transform: rotate(-8deg);
+}
+
+.alarm-caption span:last-child {
+  top: 28px;
+  left: 2px;
+  font-size: 17px;
+  transform: rotate(4deg);
+}
+
+.alarm-caption.show span:first-child {
+  animation: meep-pop 0.48s 0.12s both;
+}
+
+.alarm-caption.show span:last-child {
+  animation: meep-pop 0.52s 0.8s both;
+}
+
+.idle-hint {
+  display: block;
+  position: absolute;
+  z-index: 8;
+  bottom: 7px;
+  left: 50%;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(22, 19, 17, 0.48);
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 8.5px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.bird-stage:hover .idle-hint {
+  opacity: 1;
+}
+
+body.held .idle-hint,
+body.walking .idle-hint,
+body.timing .idle-hint {
+  display: none;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(241, 189, 130, 0.45); }
+  70% { box-shadow: 0 0 0 7px rgba(241, 189, 130, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(241, 189, 130, 0); }
+}
+
+@keyframes meep-pop {
+  0% { opacity: 0; transform: translateY(8px) scale(0.55) rotate(-8deg); }
+  32% { opacity: 1; transform: translateY(-3px) scale(1.14) rotate(-5deg); }
+  70% { opacity: 1; transform: translateY(0) scale(1) rotate(-2deg); }
+  100% { opacity: 0; transform: translateY(-9px) scale(1.03) rotate(1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

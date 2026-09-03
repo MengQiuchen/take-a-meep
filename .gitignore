@@ -1,0 +1,27 @@
+# dependencies & build output
+node_modules/
+dist/
+artifacts/
+test/out/
+.cache/
+*.log
+*.zip
+.DS_Store
+
+# local working backups
+_backup-*/
+
+# raw source material and regenerable intermediates -- kept out of the repo
+# on purpose (large, and the raw videos are not cleared for redistribution)
+VideoFrames/
+assets/source/
+assets/character/call/
+assets/character/call-v2/
+assets/character/call-v2-clean/
+assets/character/walk/
+assets/character/walk-v2/
+assets/character/puppet-v2/
+assets/character/puppet-v3/
+assets/character/woodcock-photo-v2.png
+tools/segment_foreground
+assets/icon/
