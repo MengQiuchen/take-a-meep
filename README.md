@@ -22,6 +22,14 @@
   The gait — a few slow steps, stop, rock back and forth — was frame-tracked from real woodcock footage.
 </sub></p>
 
+## Download
+
+**[⬇️ Get Take a Meep for macOS (Apple Silicon)](https://github.com/MengQiuchen/take-a-meep/releases/latest)** — grab the `.dmg`, drag the bird into Applications, done.
+
+> **First launch**: the app is ad-hoc signed (no Apple notarization yet), so macOS will warn you.
+> Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** — or run
+> `xattr -cr "/Applications/Take a Meep.app"` once in Terminal. After that it opens normally.
+
 ## Meet the bird
 
 <table>

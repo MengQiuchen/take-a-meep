@@ -22,6 +22,14 @@
   "慢走几步、停下来前后摇摆"的步态，是逐帧对照真实丘鹬影像还原的。
 </sub></p>
 
+## 下载
+
+**[⬇️ 下载 Take a Meep（macOS · Apple Silicon）](https://github.com/MengQiuchen/take-a-meep/releases/latest)** —— 下载 `.dmg`，把鸟拖进「应用程序」就装好了。
+
+> **首次打开**：应用只有本机 ad-hoc 签名（暂无 Apple 公证），macOS 会拦一下。
+> 去 **系统设置 → 隐私与安全性**，拉到底点 **仍要打开**；或在终端跑一次
+> `xattr -cr "/Applications/Take a Meep.app"`。之后就能正常打开了。
+
 ## 见见这只鸟
 
 <table>
