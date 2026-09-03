@@ -71,7 +71,7 @@ npm start            # run it right away
 npm run package:mac  # build "Take a Meep.app" (ad-hoc signed, dist/)
 ```
 
-Or just double-click **`打包并安装到桌面.command`** — it builds the app, installs it to your Desktop and launches it.
+Or just double-click **`build-and-install.command`** — it builds the app, installs it to your Desktop and launches it.
 
 ## Cheat sheet
 

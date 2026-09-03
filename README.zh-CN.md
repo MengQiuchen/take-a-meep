@@ -70,7 +70,7 @@ npm start            # 直接运行
 npm run package:mac  # 打包 "Take a Meep.app"（本机 ad-hoc 签名，输出到 dist/）
 ```
 
-或者直接双击 **`打包并安装到桌面.command`** —— 一键打包、装到桌面并启动。
+或者直接双击 **`build-and-install.command`** —— 一键打包、装到桌面并启动。
 
 ## 操作速查
 
