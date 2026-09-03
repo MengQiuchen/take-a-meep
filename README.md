@@ -10,8 +10,7 @@
 </p>
 
 <p align="center">
-  一只住在你 Mac 右下角的<b>实拍丘鹬</b>：替你掐番茄钟，到点仰头 <b>meep meep</b> 两声，<br/>
-  然后把整段休息时间用来出门散步——掐着秒、准点走回原位。
+  <b>English</b> · <a href="./README.zh-CN.md">中文</a>
 </p>
 
 <p align="center">
@@ -20,53 +19,49 @@
 
 <p align="center"><sub>
   Every feather is a slice of one public-domain USFWS photograph, re-rigged into a 12-layer puppet.<br/>
-  The gait — a few slow steps, stop, rock back and forth — was frame-tracked from real woodcock footage.<br/>
-  每一根羽毛都来自同一张 USFWS 公共领域实拍照片；"走几步、停下前后摇摆"的步态逐帧对照真实影像还原。
+  The gait — a few slow steps, stop, rock back and forth — was frame-tracked from real woodcock footage.
 </sub></p>
 
-## Meet the bird · 见见这只鸟
+## Meet the bird
 
 <table>
   <tr>
     <td align="center" width="50%">
       <img src="docs/media/meep.gif" width="360" alt="the meep meep call" /><br/>
       <b>It meeps.</b> Focus block done → head thrown back, bill wide open,
-      <i>meep meep!</i> Three de-noised takes of the real call, picked at random.<br/>
-      <sub>专注结束就仰头大叫两声——三个降噪叫声变体随机播放，不像循环采样。</sub>
+      <i>meep meep!</i> Three de-noised takes of the real call, picked at random
+      so it never sounds like a sample loop.
     </td>
     <td align="center" width="50%">
       <img src="docs/media/petting.gif" width="360" alt="petting the bird, hearts appear" /><br/>
       <b>It likes being petted.</b> Rub its feathers → squinty eyes, fluffed chest,
-      little hearts. Keep going and it meeps with joy.<br/>
-      <sub>来回摩擦会眯眼、蓬毛、冒爱心；一直摸下去它会开心得叫出声。</sub>
+      little hearts. Keep going and it meeps with joy.
     </td>
   </tr>
   <tr>
     <td align="center">
       <img src="docs/media/flutter.gif" width="360" alt="carried, dropped, wing flutter, landing" /><br/>
       <b>It can be carried.</b> Pick it up anywhere; legs paddle in protest.
-      Drop it from high and it flutters its wings all the way down.<br/>
-      <sub>随手拎走，两腿悬空乱蹬；从高处松手会一路扑棱翅膀减速。</sub>
+      Drop it from high and it flutters its wings all the way down.
     </td>
     <td align="center">
       <img src="docs/media/chip.png" width="360" alt="the floating timer pill above the bird" /><br/>
       <b>It wears its timer like a thought bubble.</b> Hover to peek, click to pin:
-      ⏸ ↺ ■, and a tiny bird-head button that meeps on demand.<br/>
-      <sub>悬停看倒计时，单击钉住；尾端的小鸟头按钮点了就叫。</sub>
+      ⏸ ↺ ■, and a tiny bird-head button that meeps on demand.
     </td>
   </tr>
 </table>
 
-## What it does · 它会做什么
+## What it does
 
-- 🍅 **Pomodoro, bird-shaped** — double-click the bird: 30 min focus + 5 min break, on repeat (lengths configurable). 双击开始/暂停循环计时。
-- 🚶 **Break walks, timed to the millisecond** — the whole break is one out-and-back walk that ends exactly where and when it started. Long break: longer sways, farther turn-around, foraging at the far end. Short break: quicker sways, closer turn-around. 休息散步按时长精确编排、准点回到出发点。
-- 🧘 **Focus means focus** — while you work (or pause) it never wanders off; it only preens, probes the ground, looks around, and dozes after 4 quiet minutes. 专注和暂停时绝不出门，只做小动作。
-- 🐛 **Curious** — park your cursor in front of its bill and it leans in for an inquisitive peck. 鼠标停在嘴前会好奇地啄一下。
-- ☰ **Everything lives in the menu bar** — timer status & controls, focus/break lengths, idle walks, mute, **bird size & opacity**, language (EN / 中文). No windows, no panels. 所有设置都在菜单栏小鸟里。
-- 🪶 **Real feathers, real physics** — photo-sliced 2.5D puppet with a stretchy neck, two-bone IK legs and a tail fan; gravity, bounces and wing-flutter when dropped. 实拍羽毛 + 真实步态数据。
+- 🍅 **Pomodoro, bird-shaped** — double-click the bird: 30 min focus + 5 min break, on repeat (lengths configurable).
+- 🚶 **Break walks, timed to the millisecond** — the whole break is one out-and-back walk that ends exactly where and when it started. Long break: longer sways, a farther turn-around point, foraging at the far end. Short break: quicker sways, a closer turn-around.
+- 🧘 **Focus means focus** — while you work (or pause) it never wanders off; it only preens, probes the ground, looks around, and dozes after 4 quiet minutes.
+- 🐛 **Curious** — park your cursor in front of its bill and it leans in for an inquisitive peck.
+- ☰ **Everything lives in the menu bar** — timer status & controls, focus/break lengths, idle walks, mute, **bird size & opacity**, language (EN / 中文). No windows, no panels.
+- 🪶 **Real feathers, real physics** — photo-sliced 2.5D puppet with a stretchy neck, two-bone IK legs and a tail fan; gravity, bounces and wing-flutter when dropped.
 
-## Run it · 跑起来
+## Run it
 
 macOS (Apple Silicon) with Node 20+:
 
@@ -78,30 +73,30 @@ npm run package:mac  # build "Take a Meep.app" (ad-hoc signed, dist/)
 
 Or just double-click **`打包并安装到桌面.command`** — it builds the app, installs it to your Desktop and launches it.
 
-## Cheat sheet · 操作速查
+## Cheat sheet
 
-| You · 你 | The bird · 鸟 |
+| You | The bird |
 |---|---|
-| Double-click 双击 | start / pause the cycle 开始 / 暂停计时 |
-| Hover 悬停 | timer pill fades in 时间牌浮现 |
-| Single click 单击 | pin / unpin the pill, plus a head tilt 钉住/收起时间牌（附赠歪头） |
-| Rub back & forth 来回摩擦 | fluff + hearts; keep going → joyful meep 蓬毛冒爱心，摸久了开心大叫 |
-| Hold & drag 按住拖动 | carried off, legs pedalling 被拎走，腿乱蹬 |
-| Drop from high 高处松手 | wing-flutter descent, crouch landing 扑棱减速，落地蹲一下 |
-| Cursor by its bill 鼠标停在嘴前 | inquisitive peck 好奇一啄 |
-| Menu-bar bird 菜单栏小鸟 | every setting, one menu 所有设置 |
+| Double-click | starts / pauses the cycle |
+| Hover | timer pill fades in |
+| Single click | pins / unpins the pill (plus a head tilt) |
+| Rub back & forth | fluff + hearts; keep going → joyful meep |
+| Hold & drag | carried off, legs pedalling |
+| Drop from high | wing-flutter descent, crouch landing |
+| Cursor by its bill | inquisitive peck |
+| Menu-bar bird | every setting, one menu |
 
-## How it's made · 怎么做的
+## How it's made
 
 The bird is a **photo-driven 2.5D puppet**: 12 layers (skull, stretchy neck, body, near wing, both mandibles, two legs with stretchable tarsi, a fanned tail feather, an eyelid) sliced out of a single public-domain USFWS photograph, driven by a small rig with two-bone leg IK. Walking numbers — 13% body-length sway, 85% head-follow, steps only during the forward surge — come from camera-compensated frame tracking of USFWS walking footage. The whole app is one transparent, always-on-top Electron window plus a tray menu.
 
-完整的技术细节（图层如何切、步态如何测、散步如何按休息时长编排）见 **[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)**。
+Full technical notes (how the layers are cut, how the gait was measured, how break walks are scheduled) live in **[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)** (in Chinese).
 
-## Credits & license · 素材与许可
+## Credits & license
 
 - **Woodcock photo**: Tiffany Vanwyck / U.S. Fish & Wildlife Service — public domain. **Walking footage** (gait reference): Keith Ramos / USFWS. See [`assets/ATTRIBUTION.md`](assets/ATTRIBUTION.md).
 - **Call audio**: recorded by the project owner, de-noised & remixed for this app; not for standalone redistribution.
 - **Behaviour references**: Frontiers in Zoology (2014) on head-bobbing & gait; birders' field notes on the woodcock rock.
 - **Code**: [MIT](LICENSE). Raw source videos and intermediate frames are deliberately not part of this repository.
 
-<p align="center"><sub>🐦 <i>meep responsibly — take your breaks.</i> · 记得休息。</sub></p>
+<p align="center"><sub>🐦 <i>meep responsibly — take your breaks.</i></sub></p>
